@@ -1,2 +1,3 @@
-# docker-compose-list
-A bunch of docker-compose files for usage
+# DevOps
+
+A bunch of devops docker files for usage 
