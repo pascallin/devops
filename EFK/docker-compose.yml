@@ -1,0 +1,42 @@
+version: '3'
+services:
+  elasticsearch:
+    image: elasticsearch:7.1.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - elk
+    volumes:
+      # - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
+      - ELASTIC_PASSWORD=changeme
+      - cluster.name=laradock-cluster
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+  kibana:
+    image: kibana:7.1.0
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk
+    volumes:
+      # - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+  fluened:
+    # image: fluentd
+    build: ./fluentd
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk
+networks:
+  elk:
+    driver: bridge
