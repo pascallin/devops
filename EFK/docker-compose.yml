@@ -27,9 +27,18 @@ services:
     volumes:
       # - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
       - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-  fluened:
-    # image: fluentd
-    build: ./fluentd
+  # fluentd:
+  #   # image: fluentd
+  #   build: ./fluentd
+  #   ports:
+  #     - "24224:24224"
+  #     - "24224:24224/udp"
+  #   depends_on:
+  #     - elasticsearch
+  #   networks:
+  #     - elk
+  fluentd:
+    image: forkdelta/fluentd-elasticsearch
     ports:
       - "24224:24224"
       - "24224:24224/udp"
@@ -37,6 +46,8 @@ services:
       - elasticsearch
     networks:
       - elk
+    volumes:
+      - ./fluentd-elastic/fluent.conf:/fluentd/etc/fluent.conf
 networks:
   elk:
     driver: bridge
