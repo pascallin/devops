@@ -15,7 +15,7 @@ services:
       - ELASTIC_PASSWORD=changeme
       - cluster.name=laradock-cluster
       - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
+      - xpack.security.enabled=true
   kibana:
     image: kibana:7.1.0
     ports:
