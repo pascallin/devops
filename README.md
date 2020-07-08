@@ -1,3 +1,3 @@
 # DevOps
 
-A bunch of devops docker files for usage 
+A bunch of docker compose files for devops usage 
