@@ -9,4 +9,7 @@ services:
     ports:
       - 3306:3306
     environment:
+      MYSQL_USER: localtest
+      MYSQL_PASSWORD: localtest
+      MYSQL_DATABASE: test
       MYSQL_ROOT_PASSWORD: localpassword
