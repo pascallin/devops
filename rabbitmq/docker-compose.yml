@@ -1,6 +1,7 @@
 version: "3"
 services:
   rabbitmq:
+    restart: 'always'
     image: "rabbitmq:3-management"
     environment:
       - RABBITMQ_DEFAULT_USER=localmq
