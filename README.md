@@ -1,3 +1,39 @@
 # DevOps
 
-A bunch of docker compose files for devops usage 
+A bunch of docker compose files for development environment usage.
+
+This repository was not a customer docker images, just some usage basically.
+
+## Category
+
+### storages
+
+- mysql
+- mongodb
+- redis
+- redis-cluster
+
+### message queue
+
+- rabbitmq
+- kafka
+
+### distributed key-value service
+
+- consul
+
+### tracing 
+
+- zipkin
+- jaeger
+
+### log and monitor
+
+- EFK
+- grafana
+- graylog
+
+### others
+
+- jenkins
+- kong
