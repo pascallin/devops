@@ -1,4 +1,4 @@
-# DevOps
+# Local DevOps
 
 A bunch of docker compose files for development environment usage.
 
