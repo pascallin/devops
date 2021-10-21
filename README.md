@@ -2,7 +2,7 @@
 
 A bunch of docker compose files for development environment usage.
 
-This repository was not a customer docker images, just some usage basically.
+This repository was not including some customer docker images, just some usage basically.
 
 ## Category
 
