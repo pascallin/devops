@@ -18,7 +18,7 @@ This repository was not including some customer docker images, just some usage b
 - rabbitmq
 - kafka
 
-### distributed key-value service
+### distributed key-value system
 
 - consul
 
