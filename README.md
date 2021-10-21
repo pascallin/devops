@@ -37,3 +37,4 @@ This repository was not including some customer docker images, just some usage b
 
 - jenkins
 - kong
+- shell-scripts（for deployment help）
