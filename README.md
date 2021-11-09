@@ -29,8 +29,9 @@ This repository was not including some customer docker images, just some usage b
 
 ### log and monitor
 
-- EFK
 - grafana
+- loki
+- EFK
 - graylog
 
 ### others
