@@ -9,4 +9,13 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
     ports:
-      - "3000:3000"
+      - "13000:3000"
+    volumes:
+      - ./provisioning:/etc/grafana/provisioning
+      - ./dashboards:/etc/grafana/dashboards
+      - ./grafana.ini:/etc/grafana/grafana.ini
+
+networks:
+  default:
+    external:
+      name: monitor-bridge-network
