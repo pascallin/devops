@@ -2,6 +2,7 @@ version: "2"
 services:
   redis-cluster:
     image: grokzen/redis-cluster:latest
+    restart: always
     environment:
       IP: "0.0.0.0"
       # SENTINEL: ${REDIS_USE_SENTINEL}
