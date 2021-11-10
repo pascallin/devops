@@ -1,0 +1,24 @@
+version: "3"
+services:
+  bull-exporter:
+    image: uphabit/bull_exporter:latest
+    environment:
+      # space delimited list of queues
+      EXPORTER_QUEUES: "{BATCH_TASKS:LIST}"
+      # find the redis service in the cluster
+      EXPORTER_REDIS_URL: redis://:yourpassword@redis:6379/3
+    ports:
+      - 9538:9538
+    networks:
+      - default
+      - redis-cluster_default
+      - redis_default
+
+networks:
+  default:
+    external:
+      name: monitor-bridge-network
+  redis-cluster_default:
+    external: true
+  redis_default:
+    external: true
