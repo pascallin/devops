@@ -10,11 +10,11 @@ services:
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
     ports:
       - "13000:3000"
+    # network_mode: host
     volumes:
       - ./provisioning:/etc/grafana/provisioning
       - ./dashboards:/etc/grafana/dashboards
       - ./grafana.ini:/etc/grafana/grafana.ini
-
 networks:
   default:
     external:

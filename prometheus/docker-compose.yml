@@ -1,6 +1,8 @@
 version: "3"
 services:
   prometheus:
+    restart: "always"
+    # network_mode: host
     image: prom/prometheus
     ports:
       - 9090:9090
@@ -8,7 +10,6 @@ services:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - default
-
 networks:
   default:
     external:
