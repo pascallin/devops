@@ -3,4 +3,4 @@ services:
   redis-bloomfilter: 
     image: redislabs/rebloom:latest
     ports: 
-      - 6479
+      - 6479:6379
