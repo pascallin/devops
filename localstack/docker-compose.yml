@@ -1,0 +1,19 @@
+# https://github.com/localstack/localstack/issues/1440
+version: "3"
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - "4566-4584:4566-4584"
+      - "9080:8080"
+    environment:
+      - SERVICES=s3
+      - HOSTNAME_EXTERNAL=localhost
+      - HOSTNAME=localhost
+      - USE_SSL=false
+      - START_WEB=1
+      - DATA_DIR=/tmp/localstack/data
+      - DEBUG=1
+    volumes:
+      - "./tmp:/tmp/localstack"
