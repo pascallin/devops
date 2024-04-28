@@ -1,21 +1,41 @@
-version: "3"
+x-logging: &default-logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "10m"
+      labels-regex: "^.+"
+
+x-network: &default-network
+  networks:
+    - internal-prod
+
+x-commons: &default-commons
+  <<: [*default-logging, *default-network]
+  restart: always
+
+volumes:
+    grafana_data: {}
+
 services:
   grafana:
-    image: grafana/grafana:8.1.6
-    restart: always
+    <<: *default-commons
+    image: grafana/grafana:latest
+    restart: unless-stopped
     environment:
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - GF_AUTH_DISABLE_LOGIN_FORM=true
-      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
+      - GF_SECURITY_ADMIN_USER=
+      - GF_SECURITY_ADMIN_PASSWORD=
     ports:
       - "13000:3000"
-    # network_mode: host
     volumes:
-      - ./provisioning:/etc/grafana/provisioning
-      - ./dashboards:/etc/grafana/dashboards
-      - ./grafana.ini:/etc/grafana/grafana.ini
+      - ./config/grafana.ini:/etc/grafana/grafana.ini
+      - ./config/dashboards:/var/lib/grafana/dashboards
+      - ./config/datasources:/etc/grafana/datasources
+      - grafana_data:/var/lib/grafana
+
 networks:
-  default:
-    external:
-      name: monitor-bridge-network
+  internal-prod:
+    name: prod_backend
+    external: true
+    
